@@ -1,28 +1,48 @@
 services:
-  server:
+  aroundu-mongo:
+    image: mongo:latest
+    container_name: aroundu-mongo
+    ports:
+      - '27017:27017'
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - app-network
+
+  aroundu-server:
     build:
       context: ./server
-    container_name: server
+    container_name: aroundu-server
     ports:
       - '3001:3001'
     volumes:
       - ./server:/app
       - /app/node_modules
     networks:
-      - aroundu-network
+      - app-network
+    depends_on:
+      aroundu-mongo:
+        condition: service_started
 
-  web:
+  aroundu-web:
     build:
       context: ./web
-    container_name: web
+    container_name: aroundu-web
     ports:
       - '3000:3000'
     volumes:
       - ./web:/app
       - /app/node_modules
     networks:
-      - aroundu-network
+      - app-network
+    depends_on:
+      aroundu-server:
+        condition: service_started
 
 networks:
-  aroundu-network:
+  app-network:
     driver: bridge
+
+volumes:
+  mongo_data:
+    driver: local
