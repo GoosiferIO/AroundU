@@ -1,0 +1,2 @@
+cd web && npm run build && npm run test
+cd ../server && npm run build && npm run test

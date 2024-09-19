@@ -1,0 +1,16 @@
+# Dependencies
+/node_modules
+/src/components/ui
+
+# Build output
+/.next/
+
+# TypeScript definitions and configurations
+*.d.ts
+
+# JSON and Markdown files
+*.json
+*.md
+
+# Miscellaneous
+.DS_Store

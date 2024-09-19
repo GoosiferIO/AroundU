@@ -1,0 +1,61 @@
+{
+  "name": "aroundu-web",
+  "version": "1.0.1",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": "20.17.0",
+    "npm": "10.8.2"
+  },
+  "scripts": {
+    "dev": "nodemon",
+    "start": "node index.js",
+    "build": "rm -rf .next && next build",
+    "test": "echo \"run tests\"",
+    "check": "npm run format && npm run lint",
+    "format": "prettier --log-level warn --write .",
+    "format:check": "prettier --check .",
+    "lint": "next lint --fix",
+    "lint:check": "next lint"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "clsx": "^2.1.1",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0",
+    "next": "^14.2.6",
+    "next-themes": "^0.3.0",
+    "react": "^18",
+    "react-dom": "^18",
+    "tailwind-merge": "^2.5.2",
+    "tailwindcss-animate": "^1.0.7"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "@typescript-eslint/eslint-plugin": "^5.54.1",
+    "@typescript-eslint/parser": "^5.54.1",
+    "autoprefixer": "^10.4.16",
+    "eslint": "^8.27.0",
+    "eslint-config-airbnb": "19.0.4",
+    "eslint-config-airbnb-typescript": "17.0.0",
+    "eslint-config-next": "13.5.6",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "2.27.5",
+    "eslint-plugin-jsx-a11y": "6.8.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "eslint-plugin-react": "7.33.2",
+    "eslint-plugin-react-hooks": "4.6.0",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
+    "nodemon": "^3.1.5",
+    "postcss": "^8.4.32",
+    "postcss-flexbugs-fixes": "^5.0.2",
+    "postcss-preset-env": "^10.0.0",
+    "prettier": "3.0.3",
+    "prettier-plugin-tailwindcss": "^0.5.9",
+    "tailwindcss": "^3.4.0",
+    "typescript": "5.1.6"
+  }
+}
