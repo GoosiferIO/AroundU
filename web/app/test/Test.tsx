@@ -13,7 +13,8 @@ export default function Test() {
 
     const runTest = async () => {
       const res = await test();
-      toast('Test result:', res);
+      console.log('Test result:', res);
+      toast('Test susccessful!');
     };
 
     runTest();
