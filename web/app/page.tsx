@@ -1,3 +1,5 @@
+import Test from './test/Test';
+
 export default function RootPage() {
-  return <>Hello from web</>;
+  return <Test />;
 }
