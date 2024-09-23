@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
+import { toast } from 'sonner';
 
 import useTest from '@/hooks/useTest';
 
@@ -12,7 +13,7 @@ export default function Test() {
 
     const runTest = async () => {
       const res = await test();
-      console.log('Test result:', res);
+      toast('Test result:', res);
     };
 
     runTest();
