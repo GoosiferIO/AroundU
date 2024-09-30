@@ -1,5 +1,5 @@
-import Test from './test/Test';
+import Home from './home/Home';
 
 export default function RootPage() {
-  return <Test />;
+  return <Home />;
 }
