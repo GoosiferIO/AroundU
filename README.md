@@ -1,4 +1,3 @@
-````md
 # AroundU
 
 ## Overview
@@ -12,7 +11,6 @@ AroundU is an app that allows users to browse upcoming and ongoing local events.
 ```bash
 git pull upstream main
 ```
-````
 
 ### 2. Install Dependencies
 
