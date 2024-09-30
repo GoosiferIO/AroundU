@@ -1,16 +1,17 @@
-import { MongoClient } from 'mongodb';
+/* eslint-disable no-console */
+import mongoose from 'mongoose';
 
 const mongoUrl =
   process.env.MONGO_URI || 'mongodb://aroundu-mongo:27017/aroundu_db';
 
-let mongoClient: MongoClient | null = null;
+let isConnected = false;
 
 const connect = async () => {
   try {
-    if (!mongoClient) {
-      mongoClient = new MongoClient(mongoUrl);
-      await mongoClient.connect();
-      console.log('> Connected to Local MongoDB Instance');
+    if (!isConnected) {
+      await mongoose.connect(mongoUrl);
+      isConnected = true;
+      console.log('> Connected to MongoDB using Mongoose');
     }
   } catch (error) {
     console.error('> MongoDB connection failed', (error as Error).message);
@@ -19,22 +20,22 @@ const connect = async () => {
 };
 
 const disconnect = async () => {
-  if (mongoClient) {
-    await mongoClient.close();
-    mongoClient = null;
+  if (isConnected) {
+    await mongoose.disconnect();
+    isConnected = false;
     console.log('> MongoDB connection closed');
   }
 };
 
-const getClient = (): MongoClient => {
-  if (!mongoClient) {
-    throw new Error('MongoClient is not initialized. Call connect() first.');
+const getConnection = () => {
+  if (!isConnected) {
+    throw new Error('Mongoose is not connected. Call connect() first.');
   }
-  return mongoClient;
+  return mongoose.connection;
 };
 
 export default {
   connect,
   disconnect,
-  getClient,
+  getConnection,
 };
