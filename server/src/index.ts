@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import express from 'express';
 import mongo from '@/config/mongo';
 import routes from '@/routes/routes';
