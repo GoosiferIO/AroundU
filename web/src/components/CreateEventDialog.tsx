@@ -32,7 +32,7 @@ export default function CreateEventDialog({ onClose }: CreateEventDialogProps) {
         name,
         date,
         address,
-        description,
+        description: description || undefined,
       });
       toast.success('Event created successfully');
       onClose();

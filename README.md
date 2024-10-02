@@ -42,8 +42,9 @@ To access the running MongoDB instance for debugging or inspection:
 
 ```bash
 docker exec -it aroundu-mongo mongosh
+
 use aroundu_db
-db.events.find().pretty()
+db.events.find()
 ```
 
 ## Troubleshooting
