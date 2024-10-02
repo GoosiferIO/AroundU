@@ -5,7 +5,6 @@ import axios from 'axios';
 export const processPostEvents: RequestHandler = async (req, res) => {
   try {
     const { name, date, address, description } = req.body;
-
     const geocodeResponse = await axios.get(
       'https://maps.googleapis.com/maps/api/geocode/json',
       {
@@ -15,7 +14,6 @@ export const processPostEvents: RequestHandler = async (req, res) => {
         },
       },
     );
-
     if (geocodeResponse.data.status !== 'OK') {
       return res.status(400).json({
         success: false,
@@ -23,10 +21,8 @@ export const processPostEvents: RequestHandler = async (req, res) => {
         details: geocodeResponse.data.status,
       });
     }
-
     const { location } = geocodeResponse.data.results[0].geometry;
     const { lat, lng } = location;
-
     const newEvent = await createEvent({
       name,
       date,
@@ -37,7 +33,6 @@ export const processPostEvents: RequestHandler = async (req, res) => {
         coordinates: [lng, lat],
       },
     });
-
     return res.status(201).json({ success: true, data: newEvent });
   } catch (error) {
     return res.status(500).json({

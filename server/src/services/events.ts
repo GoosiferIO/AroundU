@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import Event, { EventType, EventData, EventQuery } from '@/models/Event';
 import { FilterQuery } from 'mongoose';
 
@@ -8,15 +7,13 @@ export const createEvent = async (eventData: EventData) => {
     await event.save();
     return event;
   } catch (error) {
-    console.error('> Error creating event:', (error as Error).message);
-    throw new Error('Unable to create event');
+    throw new Error((error as Error).message);
   }
 };
 
 export const fetchEvents = async (query: EventQuery) => {
   try {
     const filters: FilterQuery<EventType> = {};
-
     if (query.date) {
       filters.date = new Date(query.date);
     }
@@ -35,11 +32,9 @@ export const fetchEvents = async (query: EventQuery) => {
         },
       };
     }
-
     const events = await Event.find(filters);
     return events;
   } catch (error) {
-    console.error('> Error fetching events:', (error as Error).message);
-    throw new Error('Unable to fetch events');
+    throw new Error((error as Error).message);
   }
 };

@@ -4,7 +4,7 @@
 
 AroundU is an app that allows users to browse upcoming and ongoing local events. It shows the time, date, and distance of events relative to the user. The app is designed to help users find activities and connect with others in their community.
 
-## Setup Instructions for Developers
+## Installation
 
 ### 1. Pull the Latest Code
 
@@ -26,13 +26,29 @@ npm install && cd server && npm install && cd ../web && npm install && cd ..
 docker compose up -d --build
 ```
 
-### 4. Stop and Remove Containers
+## Development
+
+### Accessing Containers
+
+To access the running containers for debugging or inspection:
 
 ```bash
-docker compose down -v
+docker exec -it <container_name> sh
 ```
 
-### 5. Rebuild Containers After Dependency Changes
+### Accessing MongoDB
+
+To access the running MongoDB instance for debugging or inspection:
+
+```bash
+docker exec -it aroundu-mongo mongosh
+use aroundu_db
+db.events.find().pretty()
+```
+
+## Troubleshooting
+
+### Stop and Rebuild Containers After Dependency Changes
 
 ```bash
 docker compose down -v
@@ -41,7 +57,7 @@ docker compose up -d --build
 
 ## Commit Message Guidelines
 
-We follow **Conventional Commits** and use **commitlint** with **husky** to enforce this format.
+We're using **commitlint** with **husky** to enforce **Conventional Commits** format.
 
 Commit messages should follow this structure:
 
