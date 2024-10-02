@@ -1,16 +1,21 @@
 'use client';
 
-import Map from '@/components/Map';
+import { Card, CardContent } from '@/components/ui/card';
+
+import Map from './_components/Map';
+import Sidebar from './_components/Sidebar';
 
 export default function Home() {
   return (
-    <div className="home-page flex min-h-screen flex-col items-center justify-center bg-gray-50">
-      <section className="map-section w-full max-w-4xl p-4">
-        <h1 className="mb-6 text-center text-4xl font-bold">
-          Your Location...
-        </h1>
-        <Map />
-      </section>
+    <div className="home-page flex min-h-screen items-center justify-center bg-gray-50 p-4">
+      <Card className="flex w-full max-w-6xl flex-col md:flex-row">
+        <CardContent className="flex-1 p-0 md:w-1/3 md:flex-none">
+          <Sidebar />
+        </CardContent>
+        <CardContent className="mt-4 flex-1 p-0 md:mt-0 md:w-2/3">
+          <Map />
+        </CardContent>
+      </Card>
     </div>
   );
 }

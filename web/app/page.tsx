@@ -1,5 +1,11 @@
+import { HomeProvider } from '@/context/HomeContext';
+
 import Home from './home/Home';
 
 export default function RootPage() {
-  return <Home />;
+  return (
+    <HomeProvider>
+      <Home />
+    </HomeProvider>
+  );
 }
