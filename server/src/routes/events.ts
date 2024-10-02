@@ -1,5 +1,4 @@
 import buildRoutes from '@/utils/buildRoutes';
-
 import { processPostEvents, processGetEvents } from '@/controllers/events';
 import { validatePostEvents, validateGetEvents } from '@/validators/events';
 
@@ -14,9 +13,9 @@ const eventsRoutes = buildRoutes([
   {
     method: 'get',
     path: '/events',
-    validator: processGetEvents,
+    validator: validateGetEvents,
     middleware: [],
-    controller: validateGetEvents,
+    controller: processGetEvents,
   },
 ]);
 

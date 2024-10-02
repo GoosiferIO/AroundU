@@ -5,7 +5,7 @@ export const validatePostEvents: RequestHandler = (req, res, next) => {
   const schema = Joi.object({
     name: Joi.string().required(),
     date: Joi.date().iso().required(),
-    location: Joi.string().required(),
+    address: Joi.string().required(),
     description: Joi.string().optional(),
   });
 
@@ -23,8 +23,10 @@ export const validatePostEvents: RequestHandler = (req, res, next) => {
 export const validateGetEvents: RequestHandler = (req, res, next) => {
   const schema = Joi.object({
     date: Joi.date().iso().optional(),
-    location: Joi.string().optional(),
-    type: Joi.string().optional(),
+    address: Joi.string().optional(),
+    lat: Joi.number().required(),
+    lng: Joi.number().required(),
+    radius: Joi.number().min(1).max(100).required(),
   });
 
   const { error } = schema.validate(req.query);
