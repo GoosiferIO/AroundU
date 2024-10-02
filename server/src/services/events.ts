@@ -1,14 +1,8 @@
 /* eslint-disable no-console */
-import Event, { EventType } from '@/models/Event';
+import Event, { EventType, EventData, EventQuery } from '@/models/Event';
+import { FilterQuery } from 'mongoose';
 
-type EventQuery = {
-  date?: Date | string;
-  location?: string;
-};
-
-export const createEvent = async (
-  eventData: Omit<EventType, 'createdAt' | 'updatedAt'>,
-) => {
+export const createEvent = async (eventData: EventData) => {
   try {
     const event = new Event(eventData);
     await event.save();
@@ -21,13 +15,25 @@ export const createEvent = async (
 
 export const fetchEvents = async (query: EventQuery) => {
   try {
-    const filters: Partial<EventQuery> = {};
+    const filters: FilterQuery<EventType> = {};
 
     if (query.date) {
       filters.date = new Date(query.date);
     }
-    if (query.location) {
-      filters.location = query.location;
+    if (query.address) {
+      filters.address = { $regex: query.address, $options: 'i' };
+    }
+    if (query.lat && query.lng && query.radius) {
+      const radiusInMeters = query.radius * 1000;
+      filters.coordinates = {
+        $near: {
+          $geometry: {
+            type: 'Point',
+            coordinates: [query.lng, query.lat],
+          },
+          $maxDistance: radiusInMeters,
+        },
+      };
     }
 
     const events = await Event.find(filters);
