@@ -6,7 +6,7 @@
     "test": "echo \"run tests\"",
     "prepare": "husky"
   },
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@commitlint/cli": "^19.5.0",
     "@commitlint/config-conventional": "^19.5.0",

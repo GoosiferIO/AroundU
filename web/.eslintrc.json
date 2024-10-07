@@ -49,6 +49,7 @@
     "no-console": "warn",
     "react/jsx-props-no-spreading": "warn",
     "react/require-default-props": "warn",
-    "react/jsx-no-useless-fragment": "warn"
+    "react/jsx-no-useless-fragment": "warn",
+    "no-underscore-dangle": ["error", { "allow": ["_id"] }]
   }
 }
