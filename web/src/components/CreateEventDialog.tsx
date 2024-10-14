@@ -23,6 +23,7 @@ export default function CreateEventDialog({ onClose }: CreateEventDialogProps) {
   const [date, setDate] = useState('');
   const [address, setAddress] = useState('');
   const [description, setDescription] = useState('');
+  const [category, setCategory] = useState('Other');
   const { createEvent, loading, error } = useCreateEvent();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -33,6 +34,7 @@ export default function CreateEventDialog({ onClose }: CreateEventDialogProps) {
         date,
         address,
         description: description || undefined,
+        category,
       });
       toast.success('Event created successfully');
       onClose();
@@ -87,6 +89,19 @@ export default function CreateEventDialog({ onClose }: CreateEventDialogProps) {
             placeholder="Enter event description (optional)"
           />
         </div>
+        <Label htmlFor="event-description">Category</Label>
+        <select
+          id="event-category"
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
+          className="block w-full rounded-md border p-2"
+        >
+          <option value="Concert">Concert</option>
+          <option value="Happy Hour">Happy Hour</option>
+          <option value="Karaoke">Karaoke</option>
+          <option value="Yard Sale">Yard Sale</option>
+          <option value="Other">Other</option>
+        </select>
         <div className="flex justify-end space-x-2">
           <DialogClose asChild>
             <Button type="button" variant="secondary">
