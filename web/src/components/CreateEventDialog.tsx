@@ -89,7 +89,7 @@ export default function CreateEventDialog({ onClose }: CreateEventDialogProps) {
             placeholder="Enter event description (optional)"
           />
         </div>
-        <Label htmlFor="event-description">Category</Label>
+        <Label htmlFor="event-category">Category</Label>
         <select
           id="event-category"
           value={category}
