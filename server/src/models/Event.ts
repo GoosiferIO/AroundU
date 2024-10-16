@@ -5,6 +5,7 @@ export type EventType = Document & {
   date: Date;
   address: string;
   description?: string;
+  category: string;
   coordinates: {
     type: 'Point';
     coordinates: [number, number];
@@ -18,6 +19,7 @@ export type EventData = {
   date: string;
   address: string;
   description?: string;
+  category: string;
   coordinates: {
     type: 'Point';
     coordinates: [number, number];
@@ -30,6 +32,7 @@ export type EventQuery = {
   lat?: number;
   lng?: number;
   radius?: number;
+  category?: string;
 };
 
 const EventSchema: Schema = new Schema<EventType>(
@@ -50,6 +53,12 @@ const EventSchema: Schema = new Schema<EventType>(
     },
     description: {
       type: String,
+      trim: true,
+    },
+    category: {
+      type: String,
+      required: true,
+      enum: ['Concert', 'Happy Hour', 'Karaoke', 'Yard Sale', 'Other'],
       trim: true,
     },
     coordinates: {

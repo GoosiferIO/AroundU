@@ -4,6 +4,7 @@ export type EventType = {
   date: string;
   address: string;
   description?: string;
+  category: string;
   coordinates: {
     type: 'Point';
     coordinates: [number, number];
@@ -17,6 +18,7 @@ export type EventData = {
   date: string;
   address: string;
   description?: string;
+  category: string;
 };
 
 export type EventQuery = {

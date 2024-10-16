@@ -7,6 +7,9 @@ export const validatePostEvents: RequestHandler = (req, res, next) => {
     date: Joi.date().iso().required(),
     address: Joi.string().required(),
     description: Joi.string().optional(),
+    category: Joi.string()
+      .valid('Concert', 'Happy Hour', 'Karaoke', 'Yard Sale', 'Other')
+      .required(),
   });
   const { error } = schema.validate(req.body);
   if (error) {
