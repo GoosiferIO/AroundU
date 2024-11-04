@@ -18,7 +18,7 @@ export const processPostEvents: RequestHandler = async (req, res) => {
     );
 
     // Add this line to log the geocoding response for debugging
-    console.log(geocodeResponse.data);
+    // console.log(geocodeResponse.data);
 
     // Check if geocoding was successful
     if (geocodeResponse.data.status !== 'OK') {
