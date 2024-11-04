@@ -10,6 +10,7 @@ export default function Navigation() {
                 <Link href="/" className="text-black-500 font-bold">
                     AroundU
                 </Link>
+                
             </div>
             <div className="flex flex-row ml-auto">
                 <Link href="/login" className="bg-blue-500 text-white rounded px-4">
