@@ -26,7 +26,7 @@ const mapContainerStyle = {
 };
 
 export default function Map() {
-  const { userLocation, events } = useHomeContext();
+  const { userLocation, events, categoryFilter } = useHomeContext();
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || '',
     libraries,
@@ -64,15 +64,19 @@ export default function Map() {
           }}
         >
           {userLocation && <Marker position={center} title="Your Location" />}
-          {events.map((event) => {
-            const point = event.coordinates;
-            const lat = point.coordinates[1];
-            const lng = point.coordinates[0];
-            if (typeof lat === 'number' && typeof lng === 'number') {
-              return <Marker key={event._id} position={{ lat, lng }} />;
-            }
-            return null;
-          })}
+          {events
+            .filter(
+              (event) => !categoryFilter || event.category === categoryFilter,
+            )
+            .map((event) => {
+              const point = event.coordinates;
+              const lat = point.coordinates[1];
+              const lng = point.coordinates[0];
+              if (typeof lat === 'number' && typeof lng === 'number') {
+                return <Marker key={event._id} position={{ lat, lng }} />;
+              }
+              return null;
+            })}
         </GoogleMap>
       </div>
     </section>
