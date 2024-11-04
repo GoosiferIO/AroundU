@@ -5,7 +5,6 @@ import { PlusIcon } from 'lucide-react';
 import CreateEventDialog from '@/components/CreateEventDialog';
 
 import { Card, CardContent } from '@/components/ui/card';
-
 import Map from './_components/Map';
 import Sidebar from './_components/Sidebar';
 import Search from '../Search';
