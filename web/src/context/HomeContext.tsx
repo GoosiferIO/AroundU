@@ -22,12 +22,15 @@ type HomeContextState = {
   events: EventType[];
   loading: boolean;
   error: string | null;
+  categoryFilter: string | null;
+  setCategoryFilter: (category: string | null) => void;
 };
 
 const HomeContext = createContext<HomeContextState | undefined>(undefined);
 
 export function HomeProvider({ children }: { children: ReactNode }) {
   const [radius, setRadius] = useState<number>(50);
+  const [categoryFilter, setCategoryFilter] = useState<string | null>(null);
   const [userLocation, setUserLocation] = useState<{
     lat: number;
     lng: number;
@@ -51,8 +54,17 @@ export function HomeProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const contextValue = useMemo(
-    () => ({ radius, setRadius, userLocation, events, loading, error }),
-    [radius, userLocation, events, loading, error],
+    () => ({
+      radius,
+      setRadius,
+      userLocation,
+      events,
+      loading,
+      error,
+      categoryFilter,
+      setCategoryFilter,
+    }),
+    [radius, userLocation, events, loading, error, categoryFilter],
   );
 
   return (

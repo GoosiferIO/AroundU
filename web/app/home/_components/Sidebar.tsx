@@ -10,9 +10,29 @@ import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 import { Slider } from '@/components/ui/slider';
 import { useHomeContext } from '@/context/HomeContext';
 
+type Category = 'Concert' | 'Happy Hour' | 'Karaoke' | 'Yard Sale' | 'Other';
+
 export default function Sidebar() {
-  const { radius, setRadius, events, loading, error } = useHomeContext();
+  const {
+    radius,
+    setRadius,
+    events,
+    loading,
+    error,
+    setCategoryFilter,
+    categoryFilter,
+  } = useHomeContext();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+
+  const handleCategoryChange = (
+    event: React.ChangeEvent<HTMLSelectElement>,
+  ) => {
+    setCategoryFilter(event.target.value as Category);
+  };
+
+  const filteredEvents = categoryFilter
+    ? events.filter((event) => event.category === categoryFilter)
+    : events;
 
   return (
     <Card className="flex h-full flex-col border-r p-4">
@@ -42,13 +62,28 @@ export default function Sidebar() {
           />
           <p className="mt-2 text-center text-sm font-medium">{radius} km</p>
         </div>
+        <div className="mb-4">
+          <CardTitle className="mb-2 text-sm font-semibold">Category</CardTitle>
+          <select
+            value={categoryFilter || ''}
+            onChange={handleCategoryChange}
+            className="w-full rounded border p-2"
+          >
+            <option value="">All Categories</option>
+            <option value="Concert">Concert</option>
+            <option value="Happy Hour">Happy Hour</option>
+            <option value="Karaoke">Karaoke</option>
+            <option value="Yard Sale">Yard Sale</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
         <div className="results mt-4 space-y-4 overflow-y-auto">
           {loading && <p>Loading events...</p>}
           {error && <p className="text-red-500">Error: {error}</p>}
-          {!loading && events.length === 0 && (
+          {!loading && filteredEvents.length === 0 && (
             <p>No events found within {radius} km.</p>
           )}
-          {events.map((event) => (
+          {filteredEvents.map((event) => (
             <Card key={event._id} className="result-item">
               <CardContent>
                 <h3 className="font-semibold">{event.name}</h3>
