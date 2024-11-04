@@ -6,7 +6,6 @@ import { useState } from 'react';
 import CreateEventDialog from '@/components/CreateEventDialog';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 import { Slider } from '@/components/ui/slider';
 import { useHomeContext } from '@/context/HomeContext';
 
@@ -38,17 +37,6 @@ export default function Sidebar() {
     <Card className="flex h-full flex-col border-r p-4">
       <CardHeader className="flex items-center justify-between">
         <CardTitle className="text-lg font-bold">Events</CardTitle>
-        <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-          <DialogTrigger asChild>
-            <Button variant="default">
-              <PlusIcon className="mr-2 h-4 w-4" />
-              Create Event
-            </Button>
-          </DialogTrigger>
-          <DialogContent>
-            <CreateEventDialog onClose={() => setIsDialogOpen(false)} />
-          </DialogContent>
-        </Dialog>
       </CardHeader>
       <CardContent className="flex-1">
         <div className="mb-4">
