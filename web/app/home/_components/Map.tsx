@@ -52,7 +52,7 @@ export default function Map() {
   }
 
   return (
-    <section className="absolute inset-0 z-0 h-full w-full">
+    <section className="map-section h-full w-full p-4">
       <div className="relative h-full w-full">
         <GoogleMap
           zoom={15}
