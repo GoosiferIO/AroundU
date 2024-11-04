@@ -55,7 +55,7 @@ export default function Map() {
     <section className="map-section h-full w-full p-4">
       <div className="relative h-full w-full">
         <GoogleMap
-          zoom={12}
+          zoom={15}
           center={center}
           mapContainerStyle={mapContainerStyle}
           options={{
