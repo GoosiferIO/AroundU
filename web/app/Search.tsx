@@ -3,7 +3,7 @@ import { PlusIcon } from 'lucide-react';
 import CreateEventDialog from '@/components/CreateEventDialog';
 import { useHomeContext } from '@/context/HomeContext';
 import { Input } from '@/components/ui/input';
-
+import { CalendarIcon, MapPinIcon } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 
 import Map from './home/_components/Map';
@@ -69,11 +69,28 @@ export default function LiveSearch() {
                 <p>No events found within {radius} km.</p>
             )}
             {filteredEvents.map((event) => (
-                <Card key={event._id} className="result-item">
-                <CardContent>
-                    <h3 className="font-semibold">{event.name}</h3>
-                    <p>{new Date(event.date).toLocaleDateString()}</p>
-                    <p>{event.address}</p>
+                <Card key={event._id} className="result-item flex border border-gray-200 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200 bg-white">
+                {/* Thumbnail Section */}
+                <div className="flex-shrink-0 overflow-hidden rounded-l-lg">
+                    <img 
+                    /* TODO: We should add support for thumbnailUrl  */
+                    src={event.thumbnailUrl || 'https://dummyimage.com/150x150/cccccc/ffffff&text=No+Image'}
+                    alt={event.name}
+                    className="object-cover w-full h-full"
+                    />
+                </div>
+  
+                {/* Event Details Section */}
+                <CardContent className="p-4 flex-grow">
+                    <h3 className="text-lg font-semibold text-gray-800 mb-2">{event.name}</h3>
+                    <div className="flex items-center mb-1">
+                    <CalendarIcon className="h-4 w-4 text-gray-500 mr-2" />
+                    <p className="text-sm text-gray-600">{new Date(event.date).toLocaleDateString()}</p>
+                    </div>
+                    <div className="flex items-center">
+                    <MapPinIcon className="h-4 w-4 text-gray-500 mr-2" />
+                    <p className="text-sm text-gray-600">{event.address}</p>
+                    </div>
                 </CardContent>
                 </Card>
             ))}
