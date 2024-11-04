@@ -1,21 +1,18 @@
 'use client';
 
 import { Card, CardContent } from '@/components/ui/card';
-
 import Map from './_components/Map';
 import Sidebar from './_components/Sidebar';
 
 export default function Home() {
   return (
-    <div className="home-page flex min-h-screen items-center justify-center bg-gray-50 p-4">
-      <Card className="flex w-full max-w-6xl flex-col md:flex-row">
-        <CardContent className="flex-1 p-0 md:w-1/3 md:flex-none">
-          <Sidebar />
-        </CardContent>
-        <CardContent className="mt-4 flex-1 p-0 md:mt-0 md:w-2/3">
-          <Map />
-        </CardContent>
-      </Card>
+    <div className="relative home-page min-h-screen bg-gray-50 p-4">
+      <Map />
+
+      {/* Card content positioned above the map */}
+      <div className="w-1/3 min-h-screen backdrop-blur-md shadow-md z-10 absolute right-5">
+        <Sidebar />
+      </div>
     </div>
   );
 }
